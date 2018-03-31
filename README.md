@@ -2,7 +2,9 @@
 
 ### Canvas
 
-**Canvas** es un elemento HTML. Literal y obviamente, se trata de un lienzo. Es usado para dibujar gráficos con scripts (normalmente JavaScript). En el código que sigue tengo un cuerpo (body) que, al cargarse (onload), ejecuta una función (pinta). Esta función pinta un cuadrilátero lleno, de tamaño 100 x 100 pixeles, ubicado a 25 pixeles del extremo izquierdo del lienzo y 25 pixeles de su extremo superior.
+**Canvas** es un elemento HTML. Literal y obviamente, se trata de un lienzo. Es usado para dibujar gráficos con scripts (normalmente JavaScript). 
+
+En el código que sigue tengo un cuerpo (body) que, al cargarse (onload), ejecuta una función (pinta). Esta función pinta un cuadrilátero lleno, de tamaño 100 x 100 pixeles, ubicado a 25 pixeles del extremo izquierdo del lienzo y 25 pixeles de su extremo superior.
 
 ```
 <body onload="pinta();">
