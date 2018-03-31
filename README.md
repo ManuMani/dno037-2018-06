@@ -23,9 +23,11 @@ ctx.fillRect(25, 25, 100, 100);
 
 ### p5.js 
 
-[p5.js](https://p5js.org/es/get-started/) es una biblioteca de JavaScript creada para hacer la programación accesible a artistas, diseñadores, educadores y principiantes. Si ya conocen [Processing](https://processing.org/reference/), esta biblioteca [se les hará aún más accesible](https://github.com/processing/p5.js/wiki/Processing-transition), a condición de recordar lo siguiente: Processing se basa en Java, mientras p5.js, que es una reinterpretación de Processing, se basa en JavaScript (Java y JavaScript se parecen tanto como una cama a un camarín; digo esto para que no se engañen con sus nombres, creyendo que el parecido podría ser como el de la cama al camarote).
+[p5.js](https://p5js.org/es/get-started/) es una biblioteca de JavaScript creada para hacer la programación accesible a artistas, diseñadores, educadores y principiantes. Si ya conocen [Processing](https://processing.org/reference/), esta biblioteca [podría resultar aun más accesible](https://github.com/processing/p5.js/wiki/Processing-transition), a condición de recordar lo siguiente: Processing se basa en Java, mientras p5.js, que es una reinterpretación de Processing, hecha biblioteca de JavaScript (Java y JavaScript se parecen tanto como una cama a un camarín; digo esto para que no se engañen con sus nombres, creyendo que el parecido podría ser como el de la cama al camarote).
 
-Con p5.js podemos escribir scripts como "sketches". Éstos se ejecutarán dentro de un `<canvas></canvas>` que esta misma biblioteca de JavaScript se encarga de crear. Pronto notarán que, con p5.js, podremos dibujar gráficos con scripts más accesibles. Por ejemplo, algo como lo de arriba se escribiría de la siguiente manera:
+Con p5.js podemos escribir scripts como "sketches" (término usado en Processing para referirse a los bocetos de programas que uno puede escribir). Éstos se ejecutarán dentro de un `<canvas></canvas>` que esta misma biblioteca de JavaScript se encarga de crear. 
+
+Por ejemplo, algo como lo que vimos más arriba, se escribiría de la siguiente manera:
 
 ```
 <body>
@@ -46,15 +48,15 @@ function draw() {
 </body>
 ```
 
-En esta clase partiremos trabajando con el [p5.js web editor](https://alpha.editor.p5js.org/). Minutos más tarde pasaremos a trabajar con los contenidos de este repositorio, usando el editor de código que habitualmente han usado en sus computadores.
+En esta clase partiremos trabajando con el [p5.js web editor](https://alpha.editor.p5js.org/). Minutos más tarde pasaremos a trabajar con los contenidos del repositorio, usando el editor de código que habitualmente han usado en sus computadores.
 
-En caso necesiten volver sobre la partida de la clase, después podrían consultar la página [First steps with p5.js](https://creative-coding.decontextualize.com/first-steps/), de Allison Parrish.
+En caso que necesiten volver sobre la partida de la clase, podrían consultar la página [First steps with p5.js](https://creative-coding.decontextualize.com/first-steps/), de Allison Parrish.
 
 **En caso que necesiten referencias:**
 
 - Primero pueden revisar [una panorámica de las principales características de p5.js](https://github.com/processing/p5.js/wiki/p5.js-overview), escrita por [Lauren McCarthy](https://github.com/lmccart), la creadora de esta biblioteca de JavaScript.  
 
-- Luego pueden buscar a [Daniel Shiffman](http://shiffman.net/), el loquillo detrás de [The Coding Train](https://www.youtube.com/thecodingtrain/). Pueden revisar sus listas de reproducción en [p5.js tutorials - JavaScript, HTML, and CSS](https://www.youtube.com/user/shiffman/playlists?view=50&sort=dd&shelf_id=14)
+- Luego pueden buscar a [Daniel Shiffman](http://shiffman.net/), el loquillo detrás de [The Coding Train](https://www.youtube.com/thecodingtrain/). Sus listas de reproducción en [p5.js tutorials - JavaScript, HTML, and CSS](https://www.youtube.com/user/shiffman/playlists?view=50&sort=dd&shelf_id=14) pueden resultar de gran ayuda.
 
 - Y siempre podrán consultar [las referencias de la página de p5.js](https://p5js.org/es/reference/).
 
