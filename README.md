@@ -46,11 +46,17 @@ function draw() {
 </body>
 ```
 
-Si necesitan referencias de p5.js, hay 2 posibilidades:
+En esta clase partiremos trabajando con el [p5.js web editor](https://alpha.editor.p5js.org/). Minutos más tarde pasaremos a trabajar con los contenidos de este repositorio, usando el editor de código que habitualmente han usado en sus computadores.
 
-- Consultar [las referencias de la página de p5.js](https://p5js.org/es/reference/).
+En caso necesiten volver sobre la partida de la clase, después podrían consultar la página [First steps with p5.js](https://creative-coding.decontextualize.com/first-steps/), de Allison Parrish.
 
-- Buscar a [Daniel Shiffman](http://shiffman.net/), el loquillo detrás de [The Coding Train](https://www.youtube.com/thecodingtrain/). Para este caso, recomendaría revisar las listas de reproducción de [p5.js tutorials - JavaScript, HTML, and CSS](https://www.youtube.com/user/shiffman/playlists?view=50&sort=dd&shelf_id=14)
+**En caso que necesiten referencias:**
+
+- Primero pueden revisar [una panorámica de las principales características de p5.js](https://github.com/processing/p5.js/wiki/p5.js-overview), escrita por [Lauren McCarthy](https://github.com/lmccart), la creadora de esta biblioteca de JavaScript.  
+
+- Luego pueden buscar a [Daniel Shiffman](http://shiffman.net/), el loquillo detrás de [The Coding Train](https://www.youtube.com/thecodingtrain/). Pueden revisar sus listas de reproducción en [p5.js tutorials - JavaScript, HTML, and CSS](https://www.youtube.com/user/shiffman/playlists?view=50&sort=dd&shelf_id=14)
+
+- Y siempre podrán consultar [las referencias de la página de p5.js](https://p5js.org/es/reference/).
 
 - - - - - - 
 
