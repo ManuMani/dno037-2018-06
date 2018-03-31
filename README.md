@@ -50,7 +50,7 @@ Si necesitan referencias de p5.js, hay 2 posibilidades:
 
 - Consultar [las referencias de la página de p5.js](https://p5js.org/es/reference/).
 
-- Buscar a [Daniel Shiffman](http://shiffman.net/), el loquillo detrás de [The Coding Train](https://www.youtube.com/thecodingtrain/). Para este caso, recomendaría revisar las listas de producción de [p5.js tutorials - JavaScript, HTML, and CSS](https://www.youtube.com/user/shiffman/playlists?view=50&sort=dd&shelf_id=14)
+- Buscar a [Daniel Shiffman](http://shiffman.net/), el loquillo detrás de [The Coding Train](https://www.youtube.com/thecodingtrain/). Para este caso, recomendaría revisar las listas de reproducción de [p5.js tutorials - JavaScript, HTML, and CSS](https://www.youtube.com/user/shiffman/playlists?view=50&sort=dd&shelf_id=14)
 
 - - - - - - 
 
