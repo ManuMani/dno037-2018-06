@@ -69,7 +69,7 @@ function setup() {
 	input = select('#city');
 }
 function estaCiudad() {
-	var laURL = 'http://api.openweathermap.org/data/2.5/weather?id=' + input.value() + '&units=metric&APPID=' + apiKey;
+	var laURL = 'https://api.openweathermap.org/data/2.5/weather?id=' + input.value() + '&units=metric&APPID=' + apiKey;
 	loadJSON(laURL, gotData);
 }
 function gotData(data) {
