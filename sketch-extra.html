@@ -28,7 +28,7 @@
 <div class="container pt-5">
 <div class="row justify-content-center">
 		<div class="col">
-			<h1>Santiago</h1>
+			<h1>NY</h1>
 			<p class="text-muted">Hacia dónde sopla el viento?</p>
 		</div>
 	</div>
@@ -45,11 +45,11 @@ var rows;
 var yoff;
 var xoff;
 function preload() {
-	santiago = loadJSON('https://api.openweathermap.org/data/2.5/weather?id=3871336&units=metric&APPID=001b0f58045147663b1ea518d34d88b4');
+	newyork = loadJSON('https://api.openweathermap.org/data/2.5/weather?id=5128581&units=metric&APPID=001b0f58045147663b1ea518d34d88b4');
 }
 function setup() {
-console.log(santiago);
-console.log(santiago.wind.deg);
+console.log(newyork);
+console.log(newyork.wind.deg);
 var canvas = createCanvas(windowWidth,windowHeight);
 canvas.position(0,0);
 canvas.style('z-index','-1');
@@ -65,7 +65,7 @@ yoff =0;
 	xoff =0;
 		for(var x=0; x<cols;x++){
 		var index = (x+y*width);
-		var angle = santiago.wind.deg;
+		var angle = newyork.wind.deg;
 		var v = p5.Vector.fromAngle(angle);
 		stroke(225);
 		push();
