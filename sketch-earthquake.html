@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<title>Sketch</title>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
+<div class="container">
+	<a class="navbar-brand" href="index.html">Sketch</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+			<li class="nav-item"><a class="nav-link" href="sketch-space.html">Space</a></li>
+			<li class="nav-item active"><a class="nav-link" href="sketch-earthquake.html">Earthquake</a></li>
+		</ul>
+	</div>
+</div>
+</nav>		
+<div class="container py-5">
+<div class="row justify-content-center">
+		<div class="col">
+			<h1>Earthquake</h1>
+			<p class="text-muted">A continuación se dibuja una visualización de los temblores +4.5 M que han sido registrados por la UGS en las últimas 24 horas. En este caso estoy poniendo el canvas en una división determinada, con identidad "here".</p>
+			<p>El problema con la visualización es que la diferencia entre magnitudes no debería ser lineal, sino exponencial.</p>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+<div class="row" style="overflow: hidden;">
+		<div id="here"></div>
+	</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
+<script>
+var earthquakes;
+var n;
+function preload() {
+	earthquakes = loadJSON('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson');
+}
+function setup() {
+	noLoop();
+	n = earthquakes.features.length;
+	console.log(n);
+	console.log(earthquakes);
+	noStroke();
+	var canvas = createCanvas(windowWidth, 330);
+	canvas.parent('here');
+}
+
+function draw() {
+	background(230);
+	for(var x = 0; x < n; x++){
+		var magnitud = earthquakes.features[x].properties.mag;	
+		fill(255,200)	
+		ellipse(width/(n+1)*(x+1), height/2, magnitud * 10, magnitud * 10);
+		rectMode(CENTER);
+		textAlign(CENTER);
+		fill(0);
+		textSize(16);
+		text(earthquakes.features[x].properties.mag, width/(n+1)*(x+1), (height/2)+3, 20, 20);
+		textSize(12);		
+		text(earthquakes.features[x].properties.place, width/(n+1)*(x+1), (height/2)+50, 100, 30);
+	}
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

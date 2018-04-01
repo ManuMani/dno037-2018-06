@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<title>Sketch</title>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+<!--desde aquí el menú de navegación-->
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
+<div class="container">
+	<a class="navbar-brand" href="index.html">Sketch</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+			<li class="nav-item"><a class="nav-link" href="sketch-space.html">Space</a></li>
+			<li class="nav-item"><a class="nav-link" href="sketch-earthquake.html">Earthquake</a></li>
+		</ul>
+	</div>
+</div>
+</nav>	
+<!--hasta aquí el menú de navegación-->
+<div class="container pt-5">
+<div class="row justify-content-center">
+		<div class="col">
+			<h1>Santiago</h1>
+			<p class="text-muted">Hacia dónde sopla el viento?</p>
+		</div>
+	</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
+<script>
+//este script está basado en http://lramrz.com/2016/12/flow-field-in-p5js/
+var inc = 0.1;
+var espacio = 30;
+var santiago;
+var cols;
+var rows;
+var yoff;
+var xoff;
+function preload() {
+	santiago = loadJSON('http://api.openweathermap.org/data/2.5/weather?id=3871336&units=metric&APPID=001b0f58045147663b1ea518d34d88b4');
+}
+function setup() {
+console.log(santiago);
+console.log(santiago.wind.deg);
+var canvas = createCanvas(windowWidth,windowHeight);
+canvas.position(0,0);
+canvas.style('z-index','-1');
+cols = floor(width/espacio);
+rows = floor(height/espacio);
+}
+function draw() {
+background(255);
+stroke(200);
+noFill();
+yoff =0;
+	for(var y=0; y<rows; y++){
+	xoff =0;
+		for(var x=0; x<cols;x++){
+		var index = (x+y*width);
+		var angle = santiago.wind.deg;
+		var v = p5.Vector.fromAngle(angle);
+		stroke(225);
+		push();
+		translate(x*espacio,y*espacio);
+		angleMode(DEGREES);
+		rotate(angle);
+		line(0,0,espacio,0);
+		pop();
+
+		}
+	}
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
