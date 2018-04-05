@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<title>p5.js</title>
+<title>Sketch</title>
 <link href="style.css" rel="stylesheet">
 </head>
 <body>
+<!--desde aquí el menú de navegación-->
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
 <div class="container">
-	<a class="navbar-brand" href="index.html">p5.js</a>
+	<a class="navbar-brand" href="index.html">Sketch</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
 	</button>
@@ -19,61 +20,54 @@
 			<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-space.html">Space</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-money.html">Money</a></li>
-			<li class="nav-item active"><a class="nav-link" href="sketch-earthquake.html">Earthquake</a></li>
-			<li class="nav-item"><a class="nav-link" href="sketch-regiones.html">Regiones</a></li>
+			<li class="nav-item"><a class="nav-link" href="sketch-earthquake.html">Earthquake</a></li>
+			<li class="nav-item active"><a class="nav-link" href="sketch-regiones.html">Regiones</a></li>
 		</ul>
 	</div>
 </div>
-</nav>		
-<div class="container py-5">
+</nav>	
+<!--hasta aquí el menú de navegación-->
+<div class="container pt-5">
 <div class="row justify-content-center">
 		<div class="col">
-			<h1>Earthquake</h1>
-			<p class="text-muted">A continuación se dibuja una visualización de los temblores +4.5 M que han sido registrados por la UGS en las últimas 24 horas. En este caso estoy poniendo el canvas en una división determinada, con identidad "here".</p>
-			<p>El problema con la visualización es que la diferencia entre magnitudes no debería ser lineal, sino exponencial.</p>
 		</div>
 	</div>
 </div>
-
-<div class="container-fluid">
-<div class="row" style="overflow: hidden;">
-		<div id="here"></div>
-	</div>
-</div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
 <script>
-var earthquakes;
+var data;
 var n;
 function preload() {
-	earthquakes = loadJSON('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson');
-}
-function setup() {
-	noLoop();
-	n = earthquakes.features.length;
-	console.log(n);
-	console.log(earthquakes);
-	noStroke();
-	var canvas = createCanvas(windowWidth, 250);
-	canvas.parent('here');
+	data = loadTable('https://raw.githubusercontent.com/profesorfaco/dno037-2018-06/gh-pages/data/poblacion.csv','csv', 'header');
 }
 
-function draw() {
-	background(230);
-	for(var x = 0; x < n; x++){
-		var magnitud = earthquakes.features[x].properties.mag;	
-		fill(255,200)	
-		ellipse(width/(n+1)*(x+1), height/2, magnitud * 10, magnitud * 10);
-		rectMode(CENTER);
-		textAlign(CENTER);
-		fill(0);
-		textSize(16);
-		text(earthquakes.features[x].properties.mag, width/(n+1)*(x+1), (height/2)+3, 20, 20);
-		textSize(12);		
-		text(earthquakes.features[x].properties.place, width/(n+1)*(x+1), (height/2)+50, 100, 30);
+function setup() {
+	console.log(data);
+	console.log(data.getRowCount() + ' son las filas en la tabla');
+	console.log(data.getColumnCount() + ' son las columnas en la tabla');
+	var canvas = createCanvas(windowWidth, windowHeight);
+	canvas.position(0,0);
+	canvas.style('z-index','-1');
+	noStroke();
+	fill(0,150);
+	textAlign(CENTER);
+	textStyle(BOLD);	
+	beginShape();
+	vertex(0,height)
+   	for (var a = 0; a < data.getRowCount(); a++) {
+		var habitantes = Math.round(data.get(a, 1)/15000)
+		vertex((windowWidth/(data.getRowCount()+1))*(a+1),(windowHeight)-habitantes);
+   		var region = data.get(a, 0);
+   		textSize(10);
+   		text(region + '\n.',(windowWidth/(data.getRowCount()+1))*(a+1),(windowHeight-11)-habitantes);
 	}
+	vertex(width,height);
+	endShape(CLOSE);
+
 }
+
+
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

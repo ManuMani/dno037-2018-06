@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<title>p5.js</title>
+<title>Sketch</title>
 <link href="style.css" rel="stylesheet">
 </head>
 <body>
+<!--desde aquí el menú de navegación-->
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
 <div class="container">
-	<a class="navbar-brand" href="index.html">p5.js</a>
+	<a class="navbar-brand" href="index.html">Sketch</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
 	</button>
@@ -18,60 +19,66 @@
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-space.html">Space</a></li>
-			<li class="nav-item"><a class="nav-link" href="sketch-money.html">Money</a></li>
-			<li class="nav-item active"><a class="nav-link" href="sketch-earthquake.html">Earthquake</a></li>
+			<li class="nav-item active"><a class="nav-link" href="sketch-money.html">Money</a></li>
+			<li class="nav-item"><a class="nav-link" href="sketch-earthquake.html">Earthquake</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-regiones.html">Regiones</a></li>
 		</ul>
 	</div>
 </div>
-</nav>		
-<div class="container py-5">
+</nav>	
+<!--hasta aquí el menú de navegación-->
+<div class="container pt-5">
 <div class="row justify-content-center">
 		<div class="col">
-			<h1>Earthquake</h1>
-			<p class="text-muted">A continuación se dibuja una visualización de los temblores +4.5 M que han sido registrados por la UGS en las últimas 24 horas. En este caso estoy poniendo el canvas en una división determinada, con identidad "here".</p>
-			<p>El problema con la visualización es que la diferencia entre magnitudes no debería ser lineal, sino exponencial.</p>
+			<h1>Hoy el dolar cuesta $<span>………</span></h1>
+			<p class="text-muted">Nuevamente, dibujo con datos en un canvas que queda como fondo. En este caso los datos los obtengo de la <a href="https://mindicador.cl/" target="_blank">mindicador.cl</a> con una consulta precargada (preload). Además, puse una condición de "alerta", que me pinte de rojo el valor menor a 605.</p>
 		</div>
 	</div>
 </div>
-
-<div class="container-fluid">
-<div class="row" style="overflow: hidden;">
-		<div id="here"></div>
-	</div>
-</div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
 <script>
-var earthquakes;
+var data;
 var n;
 function preload() {
-	earthquakes = loadJSON('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson');
+	data = loadJSON('https://mindicador.cl/api/dolar');
 }
 function setup() {
-	noLoop();
-	n = earthquakes.features.length;
+	n = 14 //data.serie.length;
 	console.log(n);
-	console.log(earthquakes);
-	noStroke();
-	var canvas = createCanvas(windowWidth, 250);
-	canvas.parent('here');
+	console.log(data);
+	var canvas = createCanvas(windowWidth, windowHeight);
+	canvas.position(0,0);
+	canvas.style('z-index','-1');
+	noLoop();
+	document.getElementsByTagName("span")[1].innerHTML = data.serie[0].valor;
 }
 
 function draw() {
-	background(230);
-	for(var x = 0; x < n; x++){
-		var magnitud = earthquakes.features[x].properties.mag;	
-		fill(255,200)	
-		ellipse(width/(n+1)*(x+1), height/2, magnitud * 10, magnitud * 10);
-		rectMode(CENTER);
-		textAlign(CENTER);
+	fill(255);
+	quad(
+		0,0,
+		900,0,
+		900,500,
+		500,0
+	);
+	background(255);
+	translate(40,0);
+	noStroke();
+	for(var i = 0; i < n; i++){
+		var x = (windowWidth/n)*i;
+		var y = windowHeight-Math.round(data.serie[i].valor/3);
+		if (data.serie[i].valor < 605){
+		fill(255,0,0);
+		}else{
 		fill(0);
-		textSize(16);
-		text(earthquakes.features[x].properties.mag, width/(n+1)*(x+1), (height/2)+3, 20, 20);
-		textSize(12);		
-		text(earthquakes.features[x].properties.place, width/(n+1)*(x+1), (height/2)+50, 100, 30);
+		}
+		ellipse(x,windowHeight-data.serie[i].valor/3,3,3);
+		textSize(13);
+		textAlign(CENTER);
+		text(data.serie[i].valor,x, windowHeight-30);
+		textSize(10);
+		text('('+data.serie[i].fecha.substring(5,10)+')',x, windowHeight-20);
 	}
 }
 </script>

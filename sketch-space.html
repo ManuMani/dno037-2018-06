@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<title>p5.js</title>
+<title>Sketch</title>
 <link href="style.css" rel="stylesheet">
 </head>
 <body>
 <!--desde aquí el menú de navegación-->
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
 <div class="container">
-	<a class="navbar-brand" href="index.html">p5.js</a>
+	<a class="navbar-brand" href="index.html">Sketch</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
 	</button>
@@ -19,7 +19,9 @@
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
 			<li class="nav-item active"><a class="nav-link" href="sketch-space.html">Space</a></li>
+			<li class="nav-item"><a class="nav-link" href="sketch-money.html">Money</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-earthquake.html">Earthquake</a></li>
+			<li class="nav-item"><a class="nav-link" href="sketch-regiones.html">Regiones</a></li>
 		</ul>
 	</div>
 </div>
@@ -28,8 +30,8 @@
 <div class="container pt-5">
 <div class="row justify-content-center">
 		<div class="col">
-			<h1>Hay 6 personas en el espacio</h1>
-			<p class="text-muted">Nuevamente, dibujo con datos en un canvas que queda como fondo. En este caso cada elipse corresponde a una de las personas que está en el espacio según registro Open Notify. En este caso la consulta es única y precargada (preload).</p>
+			<h1>Hay <span id="nro">…</span> personas en el espacio</h1>
+			<p class="text-muted">Nuevamente, dibujo con datos en un canvas que queda como fondo. En este caso cada elipse corresponde a una de las personas que está en el espacio según registros de <a href="http://open-notify.org/" target="_blank">Open Notify</a> –An open source project to provide a simple programming interface for some of NASA’s awesome data–. En este caso la consulta es precargada (preload).</p>
 		</div>
 	</div>
 </div>
@@ -39,10 +41,10 @@
 var data;
 var n;
 function preload() {
-	//para evitarme un problema uso el servicio de https://cors.io/?…
-	//también podría usar el servicio de https://crossorigin.me/…
-	data = loadJSON('https://cors.io/?http://api.open-notify.org/astros.json');
+	data = loadJSON('https://crossorigin.me/http://api.open-notify.org/astros.json');
+	img = loadImage('https://cdn0.iconfinder.com/data/icons/space-icons-rounded/110/Astronaut-512.png');
 }
+
 function setup() {
 	n = data.people.length;
 	console.log(n);
@@ -52,18 +54,17 @@ function setup() {
 	canvas.position(0,0);
 	canvas.style('z-index','-1');
 	noLoop();
+	document.getElementById("nro").innerHTML = n
 }
 
 function draw() {
 	background(255);
 	for(var i = 0; i < n; i++){
-		var x = random(20, windowWidth-180);
-		var y = random(240, windowHeight-20);
-		fill(0);
+		var x = random(20, windowWidth-200);
+		var y = random(240, windowHeight-100);
+		image(img, x, y, 40,40);
 		textSize(16);
-		text(data.people[i].name,x+15, y+5);
-		fill(200);
-		ellipse(x, y, 20, 20);
+		text(data.people[i].name,x+50, y+25);
 	}
 }
 </script>

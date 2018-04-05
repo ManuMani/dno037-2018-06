@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<title>p5.js</title>
+<title>Sketch</title>
 <link href="style.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
 <div class="container">
-	<a class="navbar-brand" href="index.html">p5.js</a>
+	<a class="navbar-brand" href="index.html">Sketch</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
 	</button>
@@ -18,7 +18,9 @@
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-space.html">Space</a></li>
+			<li class="nav-item"><a class="nav-link" href="sketch-money.html">Money</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-earthquake.html">Earthquake</a></li>
+			<li class="nav-item"><a class="nav-link" href="sketch-regiones.html">Regiones</a></li>
 		</ul>
 	</div>
 </div>
@@ -49,7 +51,7 @@
 					<button id="submit">submit</button>
 				</div>
 			</div>
-			<p class="p-2 text-muted">En este sketch aprovechamos los datos del tiempo de la ciudad seleccionada para "pintar" un canvas que tiene todo el ancho y alto de la página,  y una posición que lo deja como si fuese un fondo. La consulta podría parecer un poco complicada, porque tengo una función que consulta por lo seleccionado y otra que va a buscar los datos de forma sincrónica; pueden encontrar <a href="sketch-extra.html">una consulta más sencilla por acá</a>.</p>
+			<p class="p-2 text-muted">En este sketch aprovechamos los datos del tiempo de la ciudad seleccionada para "pintar" un canvas que tiene todo el ancho y alto de la página,  y una posición que lo deja como si fuese un fondo. La consulta podría parecer un poco complicada, porque tengo una función que consulta por lo seleccionado y otra que va a buscar los datos de forma sincrónica.</p>
 		</div>
 	</div>
 </div>
@@ -62,15 +64,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
 <script>
 var input;
-//Reemplaza los puntos suspensivos con tu APIKey
-var apiKey = '…';
+var apiKey = '001b0f58045147663b1ea518d34d88b4';
 function setup() {
 	var button = select('#submit');
 	button.mousePressed(estaCiudad);
 	input = select('#city');
 }
 function estaCiudad() {
-	var laURL = 'https://api.openweathermap.org/data/2.5/weather?id=' + input.value() + '&units=metric&APPID=' + apiKey;
+	var laURL = 'http://api.openweathermap.org/data/2.5/weather?id=' + input.value() + '&units=metric&APPID=' + apiKey;
 	loadJSON(laURL, gotData);
 }
 function gotData(data) {
