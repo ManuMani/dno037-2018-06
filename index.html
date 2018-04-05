@@ -63,14 +63,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
 <script>
 var input;
-var apiKey = '001b0f58045147663b1ea518d34d88b4';
+var apiKey = 'Ponga aquí su APIKey';
 function setup() {
 	var button = select('#submit');
 	button.mousePressed(estaCiudad);
 	input = select('#city');
 }
 function estaCiudad() {
-	var laURL = 'http://api.openweathermap.org/data/2.5/weather?id=' + input.value() + '&units=metric&APPID=' + apiKey;
+	var laURL = 'https://api.openweathermap.org/data/2.5/weather?id=' + input.value() + '&units=metric&APPID=' + apiKey;
 	loadJSON(laURL, gotData);
 }
 function gotData(data) {
