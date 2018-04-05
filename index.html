@@ -17,7 +17,6 @@
 	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-			<li class="nav-item"><a class="nav-link" href="sketch-space.html">Space</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-money.html">Money</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-earthquake.html">Earthquake</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-regiones.html">Regiones</a></li>
@@ -71,7 +70,7 @@ function setup() {
 	input = select('#city');
 }
 function estaCiudad() {
-	var laURL = 'https://api.openweathermap.org/data/2.5/weather?id=' + input.value() + '&units=metric&APPID=' + apiKey;
+	var laURL = 'http://api.openweathermap.org/data/2.5/weather?id=' + input.value() + '&units=metric&APPID=' + apiKey;
 	loadJSON(laURL, gotData);
 }
 function gotData(data) {
