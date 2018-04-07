@@ -64,13 +64,13 @@ En caso que necesiten volver sobre la partida de la clase, podrían consultar la
 
 Después de una explicación general, corresponde hacer lo siguiente:
 
-- Modificar "index.html": Para que cambie el color de fondo según la temperatura del lugar escogido;
+- Modificar `index.html`: Para que cambie el color de fondo según la temperatura del lugar escogido;
 
-- modificar "sketch-earthquake.html": Para que se muestre en gráficos de barra;
+- modificar `sketch-earthquake.html`: Para que se muestre en gráficos de barra;
 
-- modificar "sketch-money.html": Para que se muestre el cambio del valor del Euro; y
+- modificar `sketch-money.html`: Para que se muestre el cambio del valor del Euro; y
 
-- modificar "sketch-regiones.html": Para que se muestren las densidades. 
+- modificar `sketch-regiones.html`: Para que se muestren las densidades. 
 
 Pueden hacer las modificaciones en el orden que estimen conveniente.
 
