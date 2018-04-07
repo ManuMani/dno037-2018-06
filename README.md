@@ -7,8 +7,8 @@
 En el código que sigue tengo un cuerpo (body) que, al cargarse (onload), ejecuta una función (pinta). Esta función pinta un cuadrilátero lleno, de tamaño 100 x 100 pixeles, ubicado a 25 pixeles del extremo izquierdo del lienzo y 25 pixeles de su extremo superior.
 
 ```
-<body onload="pinta();">
-<canvas id="este" width="150" height="150"></canvas>
+<button type="button" onClick="pinta()">Pinta</button>
+<canvas id="este" width="150" height="150" style="background:silver"></canvas>
 <script>
 function pinta() {
 var canvas = document.getElementById('este');
@@ -18,7 +18,6 @@ ctx.fillRect(25, 25, 100, 100);
   }
 }
 </script>
-</body>
 ```
 
 ### p5.js 
