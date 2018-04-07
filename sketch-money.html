@@ -4,22 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<title>Sketch</title>
+<title>Sketching</title>
 <link href="style.css" rel="stylesheet">
 </head>
 <body>
 <!--desde aquí el menú de navegación-->
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
 <div class="container">
-	<a class="navbar-brand" href="index.html">Sketch</a>
+	<a class="navbar-brand" href="index.html">Sketching</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-			<li class="nav-item active"><a class="nav-link" href="sketch-money.html">Money</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-earthquake.html">Earthquake</a></li>
+			<li class="nav-item active"><a class="nav-link" href="sketch-money.html">Money</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-regiones.html">Regiones</a></li>
 		</ul>
 	</div>
@@ -30,7 +30,7 @@
 <div class="row justify-content-center">
 		<div class="col">
 			<h1>Hoy el dolar cuesta $<span>………</span></h1>
-			<p class="text-muted">Nuevamente, dibujo con datos en un canvas que queda como fondo. En este caso los datos los obtengo de la <a href="https://mindicador.cl/" target="_blank">mindicador.cl</a> con una consulta precargada (preload). Además, puse una condición de "alerta", que me pinte de rojo el valor menor a 605.</p>
+			<p class="text-muted">Nuevamente, dibujo con datos en un canvas que queda como fondo. En este caso los datos los obtengo de la <a href="https://mindicador.cl/" target="_blank">mindicador.cl</a> con una consulta precargada (preload). Además, puse una condición que pinta de rojo al valor menor a 605.</p>
 		</div>
 	</div>
 </div>
@@ -55,29 +55,24 @@ function setup() {
 
 function draw() {
 	fill(255);
-	quad(
-		0,0,
-		900,0,
-		900,500,
-		500,0
-	);
 	background(255);
 	translate(40,0);
 	noStroke();
 	for(var i = 0; i < n; i++){
 		var x = (windowWidth/n)*i;
-		var y = windowHeight-Math.round(data.serie[i].valor/3);
+		var y = data.serie[i].valor;
+		var mapeado = map(y,0,1000,windowHeight*1.5,0);
 		if (data.serie[i].valor < 605){
 		fill(255,0,0);
 		}else{
 		fill(0);
 		}
-		ellipse(x,windowHeight-data.serie[i].valor/3,3,3);
 		textSize(13);
 		textAlign(CENTER);
-		text(data.serie[i].valor,x, windowHeight-30);
+		text(data.serie[i].valor+"\n•",x, mapeado-14);
 		textSize(10);
-		text('('+data.serie[i].fecha.substring(5,10)+')',x, windowHeight-20);
+		text(data.serie[i].fecha.substring(5,10),x, windowHeight-20);
+		vertex(x,mapeado)
 	}
 }
 </script>
