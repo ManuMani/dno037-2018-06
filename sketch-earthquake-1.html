@@ -8,7 +8,6 @@
 <link href="style.css" rel="stylesheet">
 </head>
 <body>
-<!--desde aquí el menú de navegación-->
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
 <div class="container">
 	<a class="navbar-brand" href="index.html">Sketching</a>
@@ -21,64 +20,66 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://profesor.faco.cl" id="el_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Earthquake</a>
             <div class="dropdown-menu" aria-labelledby="el_dropdown">
-              <a class="dropdown-item" href="sketch-earthquake-1.html">M4.5+ Earthquakes</a>
+              <a class="dropdown-item active" href="sketch-earthquake-1.html">M4.5+ Earthquakes</a>
               <a class="dropdown-item" href="sketch-earthquake-2.html">20 Largest Earthquakes</a>
             </div>
           </li>
-			<li class="nav-item active"><a class="nav-link" href="sketch-money.html">Money</a></li>
+			<li class="nav-item"><a class="nav-link" href="sketch-money.html">Money</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-regiones.html">Regiones</a></li>
 		</ul>
 	</div>
 </div>
-</nav>	
-<!--hasta aquí el menú de navegación-->
-<div class="container pt-5">
+</nav>		
+<div class="container py-5">
 <div class="row justify-content-center">
 		<div class="col">
-			<h1>Hoy el dolar cuesta $<span>………</span></h1>
-			<p class="text-muted">Nuevamente, dibujo con datos en un canvas que queda como fondo. En este caso los datos los obtengo de la <a href="https://mindicador.cl/" target="_blank">mindicador.cl</a> con una consulta precargada (preload). Además, puse una condición que pinta de rojo al valor menor a 605.</p>
+			<h1><span id="nro"></span> Earthquakes</h1>
+			<p class="text-muted">A continuación se dibuja una visualización de los temblores +4.5 M que han sido registrados por la UGS en las últimas 24 horas. Para realizar la visualización con el menor <a href="http://www.infovis-wiki.net/index.php?title=Lie_Factor">Lie Factor</a> posible, mapeo los registros con un máximo igual al <a href="https://earthquake.usgs.gov/earthquakes/browse/largest-world.php">mayor temblor registrado en la historia</a>, el Terremoto de Valdivia (1960)</p>
 		</div>
 	</div>
 </div>
+
+<div class="container-fluid">
+<div class="row" style="overflow: hidden;">
+		<div id="here"></div>
+	</div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
 <script>
-var data;
+var earthquakes;
 var n;
 function preload() {
-	data = loadJSON('https://mindicador.cl/api/dolar');
+	earthquakes = loadJSON('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson');
 }
 function setup() {
-	n = 14 //data.serie.length;
-	console.log(n);
-	console.log(data);
+	n = earthquakes.features.length;
+	document.getElementById("nro").innerHTML= n;
+	console.log(earthquakes);
 	var canvas = createCanvas(windowWidth, windowHeight);
 	canvas.position(0,0);
-	canvas.style('z-index','-1');
+	canvas.style('z-index','-1')
 	noLoop();
-	document.getElementsByTagName("span")[1].innerHTML = data.serie[0].valor;
 }
 
 function draw() {
-	fill(255);
-	background(255);
-	translate(40,0);
-	noStroke();
-	for(var i = 0; i < n; i++){
-		var x = (windowWidth/n)*i;
-		var y = data.serie[i].valor;
-		var mapeado = map(y,0,1000,windowHeight*1.5,0);
-		if (data.serie[i].valor < 605){
-		fill(255,0,0);
-		}else{
+	for(var x = 0; x < n; x++){
+		var magnitud = earthquakes.features[x].properties.mag;
+		var d = map(magnitud, 4.5, 9.5, 2, width/(n+1));
+		var porcion = width/(n+1)*(x+1);
+		fill(100);
+		noStroke();
+		ellipse(porcion, height/1.5, d, d);
+		fill(200,55);
+		ellipse(porcion, height/1.5, width/(n+1), width/(n+1));
 		fill(0);
-		}
-		textSize(13);
+		rectMode(CENTER);
 		textAlign(CENTER);
-		text(data.serie[i].valor+"\n•",x, mapeado-14);
-		textSize(10);
-		text(data.serie[i].fecha.substring(5,10),x, windowHeight-20);
-		vertex(x,mapeado)
+		var txt = earthquakes.features[x].properties.mag;
+		text(txt, porcion+2,height/1.8, 20, 20);
+		var lugar = earthquakes.features[x].properties.place;
+		text(lugar, porcion+2,height*0.85, 50, width/(n+1));
 	}
 }
 </script>

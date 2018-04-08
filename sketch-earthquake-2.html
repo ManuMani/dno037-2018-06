@@ -8,7 +8,6 @@
 <link href="style.css" rel="stylesheet">
 </head>
 <body>
-<!--desde aquí el menú de navegación-->
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
 <div class="container">
 	<a class="navbar-brand" href="index.html">Sketching</a>
@@ -22,65 +21,80 @@
             <a class="nav-link dropdown-toggle" href="http://profesor.faco.cl" id="el_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Earthquake</a>
             <div class="dropdown-menu" aria-labelledby="el_dropdown">
               <a class="dropdown-item" href="sketch-earthquake-1.html">M4.5+ Earthquakes</a>
-              <a class="dropdown-item" href="sketch-earthquake-2.html">20 Largest Earthquakes</a>
+              <a class="dropdown-item active" href="sketch-earthquake-2.html">20 Largest Earthquakes</a>
             </div>
           </li>
-			<li class="nav-item active"><a class="nav-link" href="sketch-money.html">Money</a></li>
+			<li class="nav-item"><a class="nav-link" href="sketch-money.html">Money</a></li>
 			<li class="nav-item"><a class="nav-link" href="sketch-regiones.html">Regiones</a></li>
 		</ul>
 	</div>
 </div>
-</nav>	
-<!--hasta aquí el menú de navegación-->
-<div class="container pt-5">
+</nav>		
+<div class="container py-5">
 <div class="row justify-content-center">
 		<div class="col">
-			<h1>Hoy el dolar cuesta $<span>………</span></h1>
-			<p class="text-muted">Nuevamente, dibujo con datos en un canvas que queda como fondo. En este caso los datos los obtengo de la <a href="https://mindicador.cl/" target="_blank">mindicador.cl</a> con una consulta precargada (preload). Además, puse una condición que pinta de rojo al valor menor a 605.</p>
+			<h1>20 Largest Earthquakes</h1>
+			<p class="text-muted">A propósito de los <a href="https://earthquake.usgs.gov/earthquakes/browse/largest-world.php">20 mayores temblores registrados en la historia</a>, aprovecho de compartirles un truco de las Hojas de Cálculo de Google: Si necesitan copiar una tabla desde un sitio web, basta con que incluyan el siguiente código en la primera casilla de la Hoja: <code>=ImportHTML("La URL";"table";1)</code>. Eso fue lo que hice yo, para luego descargar esa Hoja como <a href="https://es.wikipedia.org/wiki/Valores_separados_por_comas">CSV</a>.</p>
 		</div>
 	</div>
 </div>
+
+<div class="container-fluid">
+<div class="row">
+		<div class="col">
+			<div id="there" style="overflow-x:hidden"></div>
+		</div>
+	</div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
 <script>
 var data;
-var n;
 function preload() {
-	data = loadJSON('https://mindicador.cl/api/dolar');
+	data = loadTable('https://raw.githubusercontent.com/profesorfaco/dno037-2018-06/gh-pages/data/mag.csv','csv', 'header');
 }
 function setup() {
-	n = 14 //data.serie.length;
-	console.log(n);
 	console.log(data);
-	var canvas = createCanvas(windowWidth, windowHeight);
-	canvas.position(0,0);
-	canvas.style('z-index','-1');
-	noLoop();
-	document.getElementsByTagName("span")[1].innerHTML = data.serie[0].valor;
+	console.log('Son ' + data.getRowCount() + ' filas en la tabla');
+	console.log('Son ' + data.getColumnCount() + ' columnas en la tabla');
+	//En este caso estoy dejando la altura dependiente de los ítem de lista
+	var canvas = createCanvas(windowWidth-30, 22*data.getRowCount());
+	//Además, estoy poniendo el canvas dentro de un elemento de identidad there
+	canvas.parent('there');
+	//Y le doy, mediante estilo, un fondo gris
+	canvas.style('background','#EEEEEE');
+	//muevo todo 10 pixeles hacia abajo
+   	translate(0,10);
+   	//ahora un loop para revisar todas las filas de la data
+   	for (var a = 0; a < data.getRowCount(); a++) {
+		//colores para tener a la vista a chilenos y sumatrinos
+		if (data.get(a, 1).indexOf("Chile") >= 0) { 
+			fill(200,0,100)
+		}
+   		else if (data.get(a, 1).indexOf("Sumatra") >= 0) { 
+			fill(0,100,200)
+		}
+   		else{
+   			fill(100)
+		}
+		//una condición para el nombre a desplegar
+		var nombre = data.get(a, 2);
+		if(nombre=='' || nombre.length >= 30){
+			var info = data.get(a,0)+' M.- '+ data.get(a, 1);
+		} else {
+			var info = +data.get(a,0)+' M.- '+ nombre;
+		}
+		//text
+		textSize(14);
+		//de la fecha, solo necesito el año
+		var year = splitTokens(data.get(a, 3), "-")[0];
+   		text(info + ' (' + year + ')',10,20*(a+1));
+	}
+	noStroke();
 }
 
-function draw() {
-	fill(255);
-	background(255);
-	translate(40,0);
-	noStroke();
-	for(var i = 0; i < n; i++){
-		var x = (windowWidth/n)*i;
-		var y = data.serie[i].valor;
-		var mapeado = map(y,0,1000,windowHeight*1.5,0);
-		if (data.serie[i].valor < 605){
-		fill(255,0,0);
-		}else{
-		fill(0);
-		}
-		textSize(13);
-		textAlign(CENTER);
-		text(data.serie[i].valor+"\n•",x, mapeado-14);
-		textSize(10);
-		text(data.serie[i].fecha.substring(5,10),x, windowHeight-20);
-		vertex(x,mapeado)
-	}
-}
+function draw() {}
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
