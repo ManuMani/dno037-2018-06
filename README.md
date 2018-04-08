@@ -4,7 +4,7 @@
 
 **Canvas** es un elemento HTML. Literal y obviamente, se trata de un lienzo. Es usado para dibujar gráficos con scripts (normalmente JavaScript). 
 
-En el código que sigue tengo un botón y un lienzo. El presionar el botón, se ejecuta una función (pinta). Esta función dibuja algo, en el lienzo de identidad "este". Este algo es un cuadrilátero lleno, de tamaño 100 x 100 pixeles. El cuadrilátero está ubicado a 25 pixeles del extremo izquierdo del lienzo y 25 pixeles de su extremo superior.
+En el código que sigue tengo un botón y un lienzo. Al presionar el botón, se ejecuta una función (pinta). Esta función dibuja algo en el lienzo de identidad "este". Lo que dibuja es un cuadrilátero lleno, de tamaño 100 x 100 pixeles. El cuadrilátero está ubicado a 25 pixeles del extremo izquierdo del lienzo y 25 pixeles de su extremo superior.
 
 ```
 <button type="button" onClick="pinta()">Pinta</button>
