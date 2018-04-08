@@ -1,8 +1,9 @@
 Mag,Location,Alternative Name,Date (UTC),Time (UTC),Latitude,Longitude,References
-9.5,"Bio-Bio, Chile",Valdivia Earthquake,1960-05-22,19:11,-38.14,-73.41,"Kanamori & Anderson, 1975"
-9.2,"Near the East Coast of Honshu, Japan",Tohoku Earthquake,2011-03-11,5:46,38.30,142.37,"Duputel et al., 2012"
-9.1,"Off the West Coast of Northern Sumatra","Sumatra-Andaman Islands Earthquake, 2004 Sumatra Earthquake and Tsunami, 
-9.1,Indian Ocean Earthquake,2004-12-26,0:58,3.30,95.98,"Duputel et al., 2012"
+9.5,"Bio-Bio, Chile","Valdivia Earthquake",1960-05-22,19:11,-38.14,-73.41,"Kanamori & Anderson, 1975"
+9.2,"Southern Alaska","1964 Great Alaska Earthquake, Prince William Sound Earthquake, Good Friday Earthquake",1964-03-28,03:36,60.91,-147.34,"Kanamori & Anderson, 1975"
+9.1,"Off the West Coast of Northern Sumatra","Sumatra-Andaman Islands Earthquake, 2004 Sumatra Earthquake and Tsunami, Indian Ocean Earthquake",2004-12-26,00:58,3.30,95.98,"Duputel et al., 2012"
+9.1,"Near the East Coast of Honshu, Japan","Tohoku Earthquake",2011-03-11,05:46,38.30,142.37,"Duputel et al., 2012"
+9.0,"Off the East Coast of the Kamchatka Peninsula, Russia","Kamchatka, Russia",1952-11-04,16:58,52.62,159.78,"Kanamori, 1976"
 9.0,"Off the East Coast of the Kamchatka Peninsula, Russia","Kamchatka, Russia",1952-11-04,16:58,52.62,159.78,"Kanamori, 1976"
 8.8,"Offshore Bio-Bio, Chile",Maule Earthquake,2010-02-27,6:34,-36.12,-72.90,"Duputel et al., 2012"
 8.8,Near the Coast of Ecuador,1906 Ecuador–Colombia Earthquake,1906-01-31,15:36,0.96,-79.37,"Kanamori, 1977"
@@ -19,5 +20,4 @@ Mag,Location,Alternative Name,Date (UTC),Time (UTC),Latitude,Longitude,Reference
 8.4,"Off the East Coast of Honshu, Japan","Sanriku, Japan",1933-03-02,17:31,39.21,144.59,"Kanamori, 1971"
 8.4,"Near the East Coast of Kamchatka Peninsula, Russia","Kamchatka, Russia",1923-02-03,16:02,54.49,160.47,"Okal, 1992"
 8.4,Near the Coast of Southern Peru,"Arequipa, Peru Earthquake",2001-06-23,20:33,-16.27,-73.64,"Duputel et al., 2012"
-8.4,Southern Alaska,"1964 Great Alaska Earthquake, Prince William Sound Earthquake, Good Friday 
-8.4,Earthquake",1964-03-28,3:36,60.91,-147.34,"Kanamori & Anderson, 1975"
+8.4,Southern Alaska,"1964 Great Alaska Earthquake, Prince William Sound Earthquake, Good Friday Earthquake",1964-03-28,3:36,60.91,-147.34,"Kanamori & Anderson, 1975"
