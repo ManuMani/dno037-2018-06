@@ -65,7 +65,7 @@ Después de una explicación general, corresponde hacer lo siguiente:
 
 - Modificar `index.html`: Para que cambie el color de fondo según la temperatura del lugar escogido;
 
-- modificar `sketch-earthquake.html`: Para que se muestre en gráficos de barra;
+- modificar `sketch-earthquake-1.html`: Para que se muestre en gráficos de barra;
 
 - modificar `sketch-money.html`: Para que se muestre el cambio del valor del Euro; y
 
