@@ -71,6 +71,8 @@ Después de una explicación general, corresponde hacer lo siguiente:
 
 - modificar `sketch-regiones.html`: Para que se muestren las densidades. 
 
+- modificar `sketch-titanic.html`: Para que se muestren líneas, que mejorarían la comprensión de la visualización.
+
 Pueden hacer las modificaciones en el orden que estimen conveniente.
 
 - - - - - - 
