@@ -67,9 +67,9 @@ Después de una explicación general, corresponde hacer lo siguiente:
 
 - modificar `sketch-earthquake-1.html`: Para que se muestre en gráficos de barra;
 
-- modificar `sketch-money.html`: Para que se muestre el cambio del valor del Euro; y
+- modificar `sketch-money.html`: Para que se muestre el cambio del valor del Euro;
 
-- modificar `sketch-regiones.html`: Para que se muestren las densidades. 
+- modificar `sketch-regiones.html`: Para que se muestren las densidades; y
 
 - modificar `sketch-titanic.html`: Para que se muestren líneas, que mejorarían la comprensión de la visualización.
 
