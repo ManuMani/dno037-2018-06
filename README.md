@@ -84,7 +84,7 @@ Después de una explicación general, corresponde hacer lo siguiente:
 
 - modificar `sketch-regiones.html` para que se muestren las densidades; y
 
-- modificar `sketch-titanic.html` para que se muestren líneas, que mejorarían la comprensión de [la visualización](https://github.com/profesorfaco/enedi/blob/gh-pages/README.md#introducción-a-la-visualización).
+- modificar `sketch-titanic.html` para que se muestren líneas, que mejorarían la comprensión de [la visualización](https://github.com/profesorfaco/enedi/blob/gh-pages/README.md#introducci%C3%93n-a-la-visualizaci%C3%93n).
 
 Pueden hacer las modificaciones en el orden que estimen conveniente.
 
