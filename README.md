@@ -47,6 +47,19 @@ function draw() {
 </body>
 ```
 
+Y eso se parece mucho a lo que tendría que escribir en Processing:
+
+```
+void setup() {
+	size(150, 150);
+}
+
+void draw() {
+	fill(0);
+	rect(25, 25, 100, 100);
+}
+```
+
 En esta clase partiremos trabajando con el [p5.js web editor](https://alpha.editor.p5js.org/). Minutos más tarde pasaremos a trabajar con los contenidos del repositorio, usando el editor de código que habitualmente han usado en sus computadores.
 
 En caso que necesiten volver sobre la partida de la clase, podrían consultar la página [First steps with p5.js](https://creative-coding.decontextualize.com/first-steps/), de Allison Parrish.
